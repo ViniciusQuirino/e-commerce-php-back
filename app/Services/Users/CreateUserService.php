@@ -27,7 +27,7 @@ class CreateUserService
 
             //transformar em maiusculo
             $data['type'] = isset($data['type']) ? strtoupper($data['type']) : 'CLIENTE';
-            $data['email_verification_token'] = Str::random(60);
+            
             $result = [
                 ...$data,
                 'email_verification_token' => Str::random(60),
