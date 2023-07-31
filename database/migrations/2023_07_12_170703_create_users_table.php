@@ -21,6 +21,11 @@ return new class extends Migration
             $table->string('cpf')->unique();
             $table->string('type')->default('CLIENTE');
 
+            $table->boolean('email_verified')->default(false);
+            $table->string('email_verification_token')->nullable();
+
+            $table->string('token_forget_password')->nullable();
+
             $table->timestamps();
         });
     }
