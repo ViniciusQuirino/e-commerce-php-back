@@ -39,7 +39,7 @@ class VerificationEmail implements ShouldQueue
         <body>
             <h2>Olá {$this->user->name}</h2>
             <p>Obrigado por se registrar. Por favor, clique no link abaixo para verificar seu endereço de e-mail:</p>
-            <a href='http://localhost:5174/verify-email/{$this->user->email_verification_token}'>Verificar E-mail</a>
+            <a href='https://vite-project-jade.vercel.app/verify-email/{$this->user->email_verification_token}'>Verificar E-mail</a>
         </body>
         </html>";
 

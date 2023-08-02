@@ -39,7 +39,7 @@ class ResetPasswordEmail implements ShouldQueue
             <p>Olá {$this->user->name}!</p>
             <p>Você solicitou redefinir sua senha.</p>
             <p>Clique no link abaixo para redefinir sua senha:</p>
-            <a href='http://localhost:5174/forget-password/{$this->user->token_forget_password}'>Redefinir Senha</a>
+            <a href='https://vite-project-jade.vercel.app/forget-password/{$this->user->token_forget_password}'>Redefinir Senha</a>
             <p>Se você não solicitou a redefinição da senha, você pode ignorar este e-mail.</p>
         </body>
         </html>";
