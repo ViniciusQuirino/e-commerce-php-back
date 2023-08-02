@@ -3,10 +3,9 @@
 namespace App\Services\Users;
 
 use App\Exceptions\AppError;
-use App\Mail\EmailForgetPassword;
+use App\Jobs\ResetPasswordEmail;
 use App\Models\User;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Mail;
 
 class SendEmailPasswordService
 {
@@ -25,7 +24,8 @@ class SendEmailPasswordService
 
         $user->update($data);
 
-        Mail::to($user->email)->send(new EmailForgetPassword($user));
+        ResetPasswordEmail::dispatch($user);
+
         return ['message' => 'email to reset password sent successfully'];
     }
 }
