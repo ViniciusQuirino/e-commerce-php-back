@@ -34,7 +34,6 @@ class CreateUserService
         ];
 
         $user = User::create($result);
-
         // VerificationEmail::dispatch($user);
 
         $address = $user->email;
@@ -55,7 +54,7 @@ class CreateUserService
         $obMail = new Email;
         $sucesso = $obMail->sendEmail($address, $subject, $body);
         echo $sucesso ? "Mensagem enviada com sucesso!" : $obMail->getError();
-        
+
         return $user->toArray();
     }
 }
