@@ -19,5 +19,4 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 CMD ["/start.sh"]
 
-RUN php artisan queue:work database --daemon --tries=5
 
