@@ -21,15 +21,15 @@ class Email
         $obMail = new PHPMailer(true);
         try {
             $obMail->isSMTP(true);
-            $obMail->Host = env('HOST');
+            $obMail->Host = env('MAILER_HOST');
             $obMail->SMTPAuth = true;
-            $obMail->Username = env('USER');
-            $obMail->Password = env('PASS');
-            $obMail->SMTPSecure = env('SECURE');
-            $obMail->Port = env('PORT');
-            $obMail->CharSet = env('CHARSET');
+            $obMail->Username = env('MAILER_USER');
+            $obMail->Password = env('MAILER_PASS');
+            $obMail->SMTPSecure = env('MAILER_SECURE');
+            $obMail->Port = env('MAILER_PORT');
+            $obMail->CharSet = env('MAILER_CHARSET');
 
-            $obMail->setFrom(env('FROM_EMAIL'), env('FROM_NAME'));
+            $obMail->setFrom(env('MAILER_FROM_EMAIL'), env('MAILER_FROM_NAME'));
 
             $addresses = is_array($addresses) ? $addresses : [$addresses];
             foreach ($addresses as $address) {
