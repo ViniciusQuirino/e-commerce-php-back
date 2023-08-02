@@ -44,6 +44,7 @@ class VerificationEmail implements ShouldQueue
         </html>";
 
         $obMail = new Email;
-        $obMail->sendEmail($address, $subject, $body);
+        $sucesso = $obMail->sendEmail($address, $subject, $body);
+        echo $sucesso ? "Mensagem enviada com sucesso!" : $obMail->getError();
     }
 }
