@@ -99,26 +99,6 @@ services:
             - '/dev/shm:/dev/shm'
         networks:
             - sail
-    queue-worker:
-        build:
-            context: ./vendor/laravel/sail/runtimes/8.2
-            dockerfile: Dockerfile
-            args:
-                WWWGROUP: '${WWWGROUP}'
-        image: sail-8.2/app
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
-        volumes:
-            - '.:/var/www/html'
-        networks:
-            - sail
-        depends_on:
-            - mysql
-            - redis
-            - meilisearch
-            - mailpit
-            - selenium
-        entrypoint: ["sh", "-c", "php artisan queue:work database --daemon --tries=5"]
 networks:
     sail:
         driver: bridge
