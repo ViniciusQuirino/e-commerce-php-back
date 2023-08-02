@@ -34,26 +34,8 @@ class CreateUserService
         ];
 
         $user = User::create($result);
-        // VerificationEmail::dispatch($user);
-
-        $address = $user->email;
-        $subject = 'Verifique seu email';
-        // Log::debug($user->name);
-        $body = "<!DOCTYPE html>
-        <html>
-        <head>
-            <title>Verificação de E-mail</title>
-        </head>
-        <body>
-            <h2>Olá {$user->name}</h2>
-            <p>Obrigado por se registrar. Por favor, clique no link abaixo para verificar seu endereço de e-mail:</p>
-            <a href='https://vite-project-jade.vercel.app/verify-email/{$user->email_verification_token}'>Verificar E-mail</a>
-        </body>
-        </html>";
-
-        $obMail = new Email;
-        $sucesso = $obMail->sendEmail($address, $subject, $body);
-        echo $sucesso ? "Mensagem enviada com sucesso!" : $obMail->getError();
+        
+        VerificationEmail::dispatch($user);
 
         return $user->toArray();
     }

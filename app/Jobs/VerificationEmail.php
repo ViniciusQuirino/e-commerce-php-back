@@ -30,7 +30,7 @@ class VerificationEmail implements ShouldQueue
     {
         $address = $this->user->email;
         $subject = 'Verifique seu email';
-        // Log::debug($this->user->name);
+        
         $body = "<!DOCTYPE html>
         <html>
         <head>
@@ -44,7 +44,7 @@ class VerificationEmail implements ShouldQueue
         </html>";
 
         $obMail = new Email;
-        $sucesso = $obMail->sendEmail($address, $subject, $body);
-        echo $sucesso ? "Mensagem enviada com sucesso!" : $obMail->getError();
+        $obMail->sendEmail($address, $subject, $body);
+        // echo $sucesso ? "Mensagem enviada com sucesso!" : $obMail->getError();
     }
 }
