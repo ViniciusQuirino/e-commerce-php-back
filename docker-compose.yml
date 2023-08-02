@@ -99,17 +99,7 @@ services:
             - '/dev/shm:/dev/shm'
         networks:
             - sail
-networks:
-    sail:
-        driver: bridge
-volumes:
-    sail-mysql:
-        driver: local
-    sail-redis:
-        driver: local
-    sail-meilisearch:
-        driver: local
-queue-worker:
+    queue-worker:
         build:
             context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
@@ -129,3 +119,13 @@ queue-worker:
             - mailpit
             - selenium
         entrypoint: ["sh", "-c", "php artisan queue:work database --daemon --tries=5"]
+networks:
+    sail:
+        driver: bridge
+volumes:
+    sail-mysql:
+        driver: local
+    sail-redis:
+        driver: local
+    sail-meilisearch:
+        driver: local
