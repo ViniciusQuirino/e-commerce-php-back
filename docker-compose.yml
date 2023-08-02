@@ -99,6 +99,16 @@ services:
             - '/dev/shm:/dev/shm'
         networks:
             - sail
+    queue-worker:
+        image: sail-8.2/app
+        command: php artisan queue:work database --tries=5
+        volumes:
+        - '.:/var/www/html'
+        networks:
+        - sail
+        depends_on:
+        - laravel.test
+        - mysql
 networks:
     sail:
         driver: bridge

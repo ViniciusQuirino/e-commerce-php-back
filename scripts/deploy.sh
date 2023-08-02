@@ -11,6 +11,3 @@ php artisan route:cache
 
 echo "Running migration"
 php artisan migrate --force
-
-echo "Starting queue worker"
-php artisan queue:work database --daemon --tries=5
