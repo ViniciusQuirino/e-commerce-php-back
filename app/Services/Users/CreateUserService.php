@@ -28,13 +28,16 @@ class CreateUserService
         //transformar em maiusculo
         $data['type'] = isset($data['type']) ? strtoupper($data['type']) : 'CLIENTE';
 
+        $user = User::create($data);
+
         $result = [
-            ...$data,
-            'email_verification_token' => Str::random(60),
+            ...$user->toArray(),
+            'email_verified' => false,
+            'email_verification_token' => Str::random(60) . '.' . $user->id,
         ];
 
-        $user = User::create($result);
-        
+        $user->update($result);
+
         VerificationEmail::dispatch($user);
 
         return $user->toArray();
