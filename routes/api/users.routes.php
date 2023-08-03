@@ -15,7 +15,7 @@ Route::post('/forget-password/reset/{token}',[UserController::class, 'reset']);
 
 Route::middleware(['jwt.verify'])->group(function () {
     Route::prefix('/auth')->group(function () {
-        Route::get('/user/{id}', [UserController::class, 'retrieveUser']);
+        Route::get('/user', [UserController::class, 'retrieveUser']);
         Route::patch('/user', [UserController::class, 'updateUser']);
         Route::delete('/user', [UserController::class, 'deleteUser']);
     });

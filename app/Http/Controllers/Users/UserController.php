@@ -54,10 +54,16 @@ class UserController extends Controller
         return response()->json($result, 201);
     }
 
-    public function retrieveUser(Request $request, $id)
+    public function retrieveUser(Request $request)
     {
         $retrieveUserService = new RetrieveUserService();
-        $result = $retrieveUserService->execute($id);
+
+        $token = $request->bearerToken();
+        $jwtToken = new \Tymon\JWTAuth\Token($token);
+        $payload = JWTAuth::decode($jwtToken);
+        $userId = $payload['id'];
+
+        $result = $retrieveUserService->execute($userId);
         return response()->json($result, 200);
     }
 
